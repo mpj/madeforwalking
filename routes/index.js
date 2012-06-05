@@ -74,7 +74,7 @@ exports.report = function(req, res) {
 
           
           var STEP_SCALE = 30000;
-          var DELTA_SCALE = 8;
+          var DELTA_SCALE = 3;
           var days = (end-start)/(24*3600*1000);
           var delta = roundIt(wnext.weight-w.weight);
           var deltaPerDay = delta / days;
@@ -84,11 +84,11 @@ exports.report = function(req, res) {
           burnSamples.push({
             start: prettyDateString(start),
             end:   prettyDateString(end),
-            delta: deltaPerDay,
+            delta: roundIt(deltaPerDay),
             burn: burnPerDay,
             steps:  stepsPerDay,
-            stepsBarPercent: stepsPerDay / STEP_SCALE,
-            deltaBarPercent: (deltaPerDay+4)/DELTA_SCALE,
+            stepsBarSize: Math.floor((stepsPerDay / STEP_SCALE)*200) ,
+            deltaBarSize: Math.floor((Math.abs(deltaPerDay)/DELTA_SCALE)*200),
             days: days
           });
 
@@ -112,7 +112,7 @@ exports.report = function(req, res) {
 
 
 function roundIt(num) {
-  return Math.round(num*1000)/1000;
+  return Math.round(num*100)/100;
 }
 
 function prettyDateString(epoch) {

@@ -1,8 +1,39 @@
+#burnSamples
+  each burnSample in burnSamples
+    .burnSample
+      span.stepsBar
+        if burnSample.steps > 15000
+          span.body.good(style='height:#{burnSample.stepsBarSize}px')
+        else if burnSample.steps > 10000
+          span.body.ok(style='height:#{burnSample.stepsBarSize}px')
+        else
+          span.body.warning(style='height:#{burnSample.stepsBarSize}px')
+      span.deltaBar
+        if burnSample.delta > 1
+          span.body.extreme.positive(style='height:#{burnSample.deltaBarSize}px')
+        else if burnSample.delta > 0
+          span.body.warning.positive(style='height:#{burnSample.deltaBarSize}px')
+        else
+          span.body.good.negative(style='height:#{burnSample.deltaBarSize}px')
 
-each burnSample in burnSamples
-  .burnSample
-    span.stepsBar
-      span.body(style='height:#{burnSample.stepsBarPercent*200}')
-    span.time   #{burnSample.start} -> #{burnSample.end}
+      if burnSample.steps > 15000
+        span.time.steps.good #{burnSample.steps}
+      else if burnSample.steps > 10000
+        span.time.steps.ok #{burnSample.steps}
+      else
+        span.time.steps.warning #{burnSample.steps}
+      
+      if burnSample.delta > 1
+        span.time.extreme #{burnSample.delta}
+      else if burnSample.delta > 0
+        span.time.warning #{burnSample.delta}
+      else
+        span.time.good #{burnSample.delta}
+
+      span.time #{burnSample.start}<br />#{burnSample.end}
+      
+
+
+      
     
     

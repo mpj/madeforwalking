@@ -7,21 +7,72 @@ a {
   color: #00B7FF;
 }
 
-.burnSample span {
+#burnSamples {
+	display: block;
+	overflow: visible;
+	white-space:nowrap;
 
+}
+.burnSample  {
 	display: inline-block;
+	width: 100px;
+	text-align: center;
+}
 
+.burnSample .stepsBar {
+	height: 200px;
+	width: 20px;
+	display: inline-block;
+	position: relative;
 }
 
 .burnSample .stepsBar .body {
 	background-color: blue;
+	width: 20px;
+	position: absolute;
+	bottom: 0;
+}
+
+.burnSample .deltaBar {
+	height: 200px;
+	width: 20px;
 	display: inline-block;
+	position: relative;
+}
+.burnSample .deltaBar .body {
+	width: 20px;
+	position: absolute;
+	bottom: 0;
+}
+
+.burnSample .deltaBar .body.extreme { background-color: red; }
+.burnSample .deltaBar .body.warning { background-color: orange; }
+.burnSample .deltaBar .body.good { background-color: green; }
+
+.burnSample .stepsBar .body.good { background-color: #00BFFF; }
+.burnSample .stepsBar .body.ok { background-color: #004CFF; }
+.burnSample .stepsBar .body.warning { background-color: #4E007A; }
+
+.burnSample .extreme { color: red; }
+.burnSample .warning { color: orange; }
+.burnSample .good { color: green; }
+
+.burnSample .deltaBar .body.negative {
+	top: 200px;
 }
 
 .burnSample span.time {
-	font-size: 20px;
-	width: 300px;
+	display: block;
+	font-size: 14px;
+	text-align: right;
+	width: 100%;
+	position: relative;
+	left: -55px;
 }
+
+.burnSample span.time.steps.good { color: #00BFFF; }
+.burnSample span.time.steps.ok { color: #004CFF; }
+.burnSample span.time.steps.warning { color: #4E007A; }
 
 .burnSample span.good {
 	color: green;
