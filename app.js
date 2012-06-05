@@ -7,11 +7,11 @@ var express = require('express')
   , routes = require('./routes')
 
 var connect = require('connect')
-  , Db = require('mongodb').Db
-  , Server = require('mongodb').Server
-  , server_config = new Server('localhost', 27017, {auto_reconnect: true, native_parser: true})
-  , db = new Db('test', server_config, {})
-  , mongoStore = require('connect-mongodb');
+  //, Db = require('mongodb').Db
+  //, Server = require('mongodb').Server
+  //, server_config = new Server('localhost', 27017, {auto_reconnect: true, native_parser: true})
+  //, db = new Db('test', server_config, {})
+//  , mongoStore = require('connect-mongodb');
 
 var app = module.exports = express.createServer(
 
@@ -25,8 +25,8 @@ app.configure(function(){
   app.use(express.bodyParser());
 
   // Session support
-  app.use(connect.cookieParser('session'));
-  app.use(connect.session({ store: new mongoStore({db: db}) }));
+  //app.use(connect.cookieParser('session'));
+  //app.use(connect.session({ store: new mongoStore({db: db}) }));
 
   app.use(express.methodOverride());
   app.use(app.router);
