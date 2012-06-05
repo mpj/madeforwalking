@@ -70,7 +70,7 @@ exports.report = function(req, res) {
 
             
             var STEP_SCALE = 30000;
-            var DELTA_SCALE = 3;
+            var DELTA_SCALE = 2;
             var days = (end-start)/(24*3600*1000);
             var delta = roundIt(wnext.weight-w.weight);
             var deltaPerDay = delta / days;
