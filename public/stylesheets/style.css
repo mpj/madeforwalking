@@ -1,0 +1,29 @@
+body {
+  padding: 50px;
+  font: 14px "Courier", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.burnSample span {
+	width: 100px;
+	margin-right: 20px;
+	display: inline-block;
+	height: 40px;
+	font-size: 20px;
+	text-align: right;
+}
+
+.burnSample span.time {
+	width: 300px;
+}
+
+.burnSample span.good {
+	color: green;
+}
+
+.burnSample span.bad {
+	color: red;
+}
