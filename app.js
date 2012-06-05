@@ -27,6 +27,7 @@ app.configure(function(){
   // Session support
   app.use(connect.cookieParser('session secret hooray'));
   //app.use(connect.session({ store: new mongoStore({db: db}) }));
+  app.use(connect.session());
 
   app.use(express.methodOverride());
   app.use(app.router);
@@ -53,3 +54,7 @@ app.get('/report', routes.report);
 
 app.listen(process.env.PORT || 3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+
+process.on('uncaughtException', function (err) {
+  console.log("Unhandled exception:\n", err.stack);
+});
