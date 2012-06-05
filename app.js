@@ -27,7 +27,7 @@ app.configure(function(){
   // Session support
   app.use(connect.cookieParser('session secret hooray'));
   //app.use(connect.session({ store: new mongoStore({db: db}) }));
-  app.use(connect.session());
+  app.use(connect.session({ secret: "session secret hooray" }));
 
   app.use(express.methodOverride());
   app.use(app.router);
