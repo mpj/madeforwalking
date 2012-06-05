@@ -1,9 +1,8 @@
 
 each burnSample in burnSamples
   .burnSample
+    span.stepsBar
+      span.body(style='height:#{burnSample.stepsBarPercent*200}')
     span.time   #{burnSample.start} -> #{burnSample.end}
-    if burnSample.delta <= 0 
-      span.delta.good=   burnSample.delta
-    else
-      span.delta.bad=   burnSample.delta
-    span.burn    #{burnSample.steps}
+    
+    

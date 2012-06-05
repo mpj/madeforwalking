@@ -72,14 +72,23 @@ exports.report = function(req, res) {
           if (stepsPeriod == 0 || missedADay) continue;
           // Crappy data if one day is missed.
 
+          
+          var STEP_SCALE = 30000;
+          var DELTA_SCALE = 8;
           var days = (end-start)/(24*3600*1000);
           var delta = roundIt(wnext.weight-w.weight);
+          var deltaPerDay = delta / days;
+          var stepsPerDay = Math.floor(stepsPeriod/days);
+          var burnPerDay = Math.floor(calsPeriod/days);
+
           burnSamples.push({
             start: prettyDateString(start),
             end:   prettyDateString(end),
-            delta: roundIt(delta / days),
-            burn:  Math.floor(calsPeriod/days),
-            steps:  Math.floor(stepsPeriod/days),
+            delta: deltaPerDay,
+            burn: burnPerDay,
+            steps:  stepsPerDay,
+            stepsBarPercent: stepsPerDay / STEP_SCALE,
+            deltaBarPercent: (deltaPerDay+4)/DELTA_SCALE,
             days: days
           });
 
@@ -101,18 +110,6 @@ exports.report = function(req, res) {
   
 }
 
-function fitbitData(req, res, dataPath, cb) {
-  var path = '/user/-/' + dataPath + '/date/2012-06-05/1m.json';
-  callFitbitAPI(req, res, path, function(err, data) {
-    if (err) cb(err)
-    else {
-      var propName = dataPath.replace('/','-');
-      if (propName.indexOf('weight') > -1)
-        propName = "weight"; // bullshit case
-      cb(null, data[propName]);
-    }
-  });
-}
 
 function roundIt(num) {
   return Math.round(num*1000)/1000;
@@ -128,6 +125,20 @@ function prettyDateString(epoch) {
   if (dateStr.length == 1) 
     dateStr = "0"+dateStr;
   return monthName + dateStr;
+}
+
+
+function fitbitData(req, res, dataPath, cb) {
+  var path = '/user/-/' + dataPath + '/date/2012-06-05/1m.json';
+  callFitbitAPI(req, res, path, function(err, data) {
+    if (err) cb(err)
+    else {
+      var propName = dataPath.replace('/','-');
+      if (propName.indexOf('weight') > -1)
+        propName = "weight"; // bullshit case
+      cb(null, data[propName]);
+    }
+  });
 }
 
 

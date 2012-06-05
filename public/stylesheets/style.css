@@ -8,15 +8,18 @@ a {
 }
 
 .burnSample span {
-	width: 100px;
-	margin-right: 20px;
+
 	display: inline-block;
-	height: 40px;
-	font-size: 20px;
-	text-align: right;
+
+}
+
+.burnSample .stepsBar .body {
+	background-color: blue;
+	display: inline-block;
 }
 
 .burnSample span.time {
+	font-size: 20px;
 	width: 300px;
 }
 
